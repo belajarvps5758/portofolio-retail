@@ -187,55 +187,52 @@
   </footer>
 
   <script>
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbzezyrCabGE8vVf0EBpPCZoMnCzYgRZkQnxkwHyi0h0EhKE6xggueOS97Xuerwc9tlc/exec";
+  // GANTI SANGAT PENTING: Masukkan Web App URL dari GAS Anda di bawah ini
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbzc7WI5XimQTgJTT274m0FvAZDH4v0oAgiu9Mqz6CfuFwwry1JpY9VfJpD6jFsIBwoh/exec";
 
-    // PASANG URL WEB APP GAS TERBARU ANDA DI SINI
+  const form = document.getElementById('contact-form');
+  const statusMsg = document.getElementById('status-msg');
+  const btnSubmit = document.getElementById('btn-submit');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
     
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
+    statusMsg.innerText = '';
 
-    const form = document.getElementById('contact-form');
-    const statusMsg = document.getElementById('status-msg');
-    const btnSubmit = document.getElementById('btn-submit');
+    // Gunakan URLSearchParams agar format data sesuai x-www-form-urlencoded
+    const formData = new URLSearchParams();
+    formData.append('nama', document.getElementById('nama').value);
+    formData.append('email', document.getElementById('email').value);
+    formData.append('pesan', document.getElementById('pesan').value);
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      btnSubmit.disabled = true;
-      btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
-      statusMsg.innerText = '';
-
-      // Mengubah data form menjadi URLSearchParams agar mudah dibaca oleh GAS
-      const formData = new URLSearchParams(new FormData(form));
-
-      fetch(GAS_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData
-      })
-      .then(res => res.json())
-      .then(data => {
-        if(data.result === 'success') {
-          statusMsg.innerText = 'Pesan berhasil terkirim dan disimpan!';
-          statusMsg.style.color = '#38bdf8';
-          form.reset();
-        } else {
-          throw new Error(data.error || 'Terjadi kesalahan');
-        }
-      })
-      .catch(err => {
-        // Jika fetch sukses mengirim tapi terhalang CORS redirect pada JSON response:
-        console.error(err);
-        statusMsg.innerText = 'Pesan berhasil dikirim!';
-        statusMsg.style.color = '#38bdf8';
-        form.reset();
-      })
-      .finally(() => {
-        btnSubmit.disabled = false;
-        btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Kirim Pesan';
-      });
+    fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors', // MEMAKSA BROWSER MENGABAIKAN BLOKIRAN CORS GAS
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formData
+    })
+    .then(() => {
+      // Mengingat mode 'no-cors' tidak mengembalikan isi JSON response,
+      // jika request sampai ke server tanpa error jaringan, pesan pasti terkirim.
+      statusMsg.innerText = 'Pesan berhasil terkirim dan disimpan!';
+      statusMsg.style.color = '#38bdf8';
+      form.reset();
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      statusMsg.innerText = 'Gagal mengirim pesan. Silakan coba lagi.';
+      statusMsg.style.color = '#f87171';
+    })
+    .finally(() => {
+      btnSubmit.disabled = false;
+      btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Kirim Pesan';
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
