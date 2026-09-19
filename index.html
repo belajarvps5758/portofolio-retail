@@ -72,6 +72,20 @@
     #status-msg { margin-top: 1rem; font-weight: 600; text-align: center; }
 
     footer { text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.85rem; }
+    .project-card {
+    padding: 0;
+    overflow: hidden;
+  }
+  .project-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .project-info {
+    padding: 1.5rem;
+  }
+    
   </style>
 </head>
 <body>
@@ -124,33 +138,46 @@
     <div class="container">
       <h2 class="section-title">Proyek & Otomatisasi Sistem</h2>
       <div class="projects-grid">
+        
         <div class="project-card">
-          <h3>Sistem Stock Opname & Inventory GAS</h3>
-          <p>Otomatisasi pencatatan stok fisik dan rekonsiliasi data inventaris toko menggunakan Google Apps Script berbasis Web GUI.</p>
-          <div class="tags">
-            <span class="tag">Google Sheets</span>
-            <span class="tag">GAS Web App</span>
-            <span class="tag">Retail</span>
+          <img src="project-inventory.jpg" alt="Sistem Stock Opname" class="project-img">
+          <div class="project-info">
+            <h3>Sistem Stock Opname & Inventory GAS</h3>
+            <p>Otomatisasi pencatatan stok fisik dan rekonsiliasi data inventaris toko menggunakan Google Apps Script berbasis Web GUI.</p>
+            <div class="tags">
+              <span class="tag">Google Sheets</span>
+              <span class="tag">GAS Web App</span>
+              <span class="tag">Retail</span>
+            </div>
           </div>
         </div>
+
         <div class="project-card">
-          <h3>Dashboard Analytics Penjualan Harian</h3>
-          <p>Sistem pelaporan otomatisasi omzet harian dan performa produk dari Google Sheets langsung ke email manajerial.</p>
-          <div class="tags">
-            <span class="tag">Automation</span>
-            <span class="tag">Analytics</span>
-            <span class="tag">Gmail API</span>
+          <img src="project-analytics.jpg" alt="Dashboard Analytics" class="project-img">
+          <div class="project-info">
+            <h3>Dashboard Analytics Penjualan Harian</h3>
+            <p>Sistem pelaporan otomatisasi omzet harian dan performa produk dari Google Sheets langsung ke email manajerial.</p>
+            <div class="tags">
+              <span class="tag">Automation</span>
+              <span class="tag">Analytics</span>
+              <span class="tag">Gmail API</span>
+            </div>
           </div>
         </div>
+
         <div class="project-card">
-          <h3>Manajemen & Pengembangan Tim Toko</h3>
-          <p>Penyusunan KPI, penjadwalan shift kerja otomatis, dan program pelatihan tim lapangan untuk meningkatkan efisiensi operasional.</p>
-          <div class="tags">
-            <span class="tag">Team Leadership</span>
-            <span class="tag">SOP</span>
-            <span class="tag">Optimization</span>
+          <img src="project-team.jpg" alt="Manajemen Tim Toko" class="project-img">
+          <div class="project-info">
+            <h3>Manajemen & Pengembangan Tim Toko</h3>
+            <p>Penyusunan KPI, penjadwalan shift kerja otomatis, dan program pelatihan tim lapangan untuk meningkatkan efisiensi operasional.</p>
+            <div class="tags">
+              <span class="tag">Team Leadership</span>
+              <span class="tag">SOP</span>
+              <span class="tag">Optimization</span>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
